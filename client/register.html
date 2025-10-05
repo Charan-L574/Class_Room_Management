@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card">
+        <h2>Register</h2>
+        <form id="register-form">
+          <input type="text" id="username" placeholder="Username" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+          <select id="role" required>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+          <div id="rollno-field" style="display: none">
+            <input type="text" id="rollno" placeholder="Roll No" />
+          </div>
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+      document.getElementById("role").addEventListener("change", function () {
+        const rollNoField = document.getElementById("rollno-field");
+        if (this.value === "student") {
+          rollNoField.style.display = "block";
+          document.getElementById("rollno").required = true;
+        } else {
+          rollNoField.style.display = "none";
+          document.getElementById("rollno").required = false;
+        }
+      });
+      // Trigger change on load to set initial state
+      document.getElementById("role").dispatchEvent(new Event("change"));
+    </script>
+  </body>
+</html>

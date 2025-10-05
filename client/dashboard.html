@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header id="main-header">
+      <div class="navbar-brand">Class Room</div>
+      <div class="navbar-user-section">
+        <span id="user-info"></span>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </div>
+    </header>
+    <main id="dashboard-container">
+      <div id="main-content">
+        <h1>Dashboard</h1>
+        <div id="dashboard-content">
+          <!-- Role-specific content will be loaded here -->
+        </div>
+      </div>
+      <aside id="sidebar">
+        <div id="chat-container" class="dashboard-section">
+          <h3>Global Chat</h3>
+          <div id="chat-messages"></div>
+          <input type="text" id="chat-input" placeholder="Type a message..." />
+          <button id="send-chat-btn">Send</button>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Teacher Templates -->
+    <template id="teacher-dashboard">
+      <h2>Teacher Dashboard</h2>
+
+      <div id="announcements-section" class="dashboard-section">
+        <h3>Post an Announcement</h3>
+        <form id="announcement-form">
+          <textarea
+            id="announcement-text"
+            placeholder="Announcement..."
+            required
+          ></textarea>
+          <button type="submit">Post</button>
+        </form>
+      </div>
+
+      <div id="assignments-section" class="dashboard-section">
+        <h3>Create an Assignment</h3>
+        <form id="assignment-form">
+          <input
+            type="text"
+            id="assignment-title"
+            placeholder="Title"
+            required
+          />
+          <textarea
+            id="assignment-description"
+            placeholder="Description"
+            required
+          ></textarea>
+          <button type="submit">Create</button>
+        </form>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>Assignments</h3>
+        <div id="assignment-list"></div>
+      </div>
+    </template>
+
+    <!-- Student Templates -->
+    <template id="student-dashboard">
+      <h2>Student Dashboard</h2>
+      <div class="dashboard-section">
+        <h3>Announcements</h3>
+        <div id="announcement-list"></div>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>Assignments</h3>
+        <div id="assignment-list"></div>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>My Grades</h3>
+        <div id="grade-list"></div>
+      </div>
+    </template>
+
+    <!-- Admin Templates -->
+    <template id="admin-dashboard">
+      <h2>Admin Dashboard</h2>
+      <div class="dashboard-section">
+        <h3>Users</h3>
+        <div id="user-list"></div>
+      </div>
+    </template>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="dashboard.js"></script>
+    <script>
+      function logout() {
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>
